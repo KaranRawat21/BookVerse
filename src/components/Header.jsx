@@ -18,7 +18,7 @@ export default function Header() {
 
       <NavLink
         to='addbook'
-        className="flex items-center gap-1"><IoAddCircle /> Add Book</NavLink>
+        className="flex items-center gap-1 bg-[#53a28a] p-2 rounded-xl text-white text-sm cursor-pointer"><IoAddCircle className="text-2xl" /> Add Book</NavLink>
     </div>
   )
 }

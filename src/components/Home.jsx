@@ -50,7 +50,7 @@ export default function Home() {
       </div>
 
       {/* //category container */}
-      <div className="flex flex-col gap-2  ">
+      <div className="flex flex-col gap-5  ">
         <div className=" lg:hidden flex flex-col gap-2">
           <p className=" text-gray-500 font-medium text-sm">Books Categories</p>
           {/* //only for small and medium screens */}
