@@ -8,6 +8,7 @@ import BrowseBooks from './components/BrowseBooks.jsx'
 import AddBook from './components/AddBook.jsx'
 import NotFound from './components/NotFound.jsx'
 import Home from './components/Home.jsx'
+import BookDetails from './components/BookDetails.jsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: 'addbook',
         element: <AddBook />
+      },
+      {
+        path: 'book/:id',
+        element: <BookDetails />
+      },
+      {
+        path: '/browsebooks/book/:id',
+        element: <BookDetails />
       }
     ],
     errorElement: <NotFound />

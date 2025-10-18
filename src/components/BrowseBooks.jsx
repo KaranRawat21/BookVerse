@@ -13,7 +13,7 @@ export default function BrowseBooks() {
   );
 
   return (
-    <div className="bg-[#e9eef3] px-3 flex flex-col gap-6 items-center p-6 h-screen">
+    <div className="bg-[#e9eef3] px-3 flex flex-col gap-6 items-center p-6 min-h-screen">
       {/* Category Section */}
       <div className="w-full">
         <Categories />
@@ -31,17 +31,38 @@ export default function BrowseBooks() {
       </div>
 
       {/* Books Grid */}
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))
-        ) : (
-          <p className="text-gray-500 text-center col-span-full">
-            No books found matching “{searchTerm}”.
-          </p>
-        )}
-      </div>
+      {
+        books.length > 0 ? <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
+          {filteredBooks.length > 0 ? (
+            filteredBooks.map((book) => (
+              <BookCard key={book.id} book={book} />
+            ))
+          ) : (
+            <p className="text-gray-500 text-center col-span-full">
+              No books found matching “{searchTerm}”.
+            </p>
+          )}
+        </div> : <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl">
+          {
+            [...Array(9)].map((_, i) => (
+              <div key={i} className="w-full h-[160px] rounded-2xl shadow-xl bg-[#d9d9da] animate-color-change "></div>
+            ))
+          }
+        </div>
+      }
+
+      {/* inline animation for color changing */}
+      <style>
+        {`
+          @keyframes color-change {
+            0%, 100% { background-color: #d9d9da; }
+            50% { background-color: #c2c4c8; } /* gray-300 */
+          }
+          .animate-color-change {
+            animation: color-change 1.5s infinite ease-in-out;
+          }
+        `}
+      </style>
     </div>
   );
 }

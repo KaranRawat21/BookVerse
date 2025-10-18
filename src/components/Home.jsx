@@ -7,9 +7,6 @@ import Categories from "./Categories";
 export default function Home() {
   const dispatch = useDispatch();
   const books = useSelector(state => state.books.list);
-  const loading = useSelector(state => state.books.loading);
-  const error = useSelector(state => state.books.error);
-
 
   const randomBooks = useMemo(() => {
     if (books.length === 0) return [];
@@ -40,7 +37,7 @@ export default function Home() {
 
 
   return (
-    <div className=" bg-[#e9eef3] px-3 py-10 flex flex-col gap-10">
+    <div className=" bg-[#e9eef3] px-3 py-10 flex flex-col gap-10 min-h-screen">
       <div className="flex flex-col items-center gap-6">
         <h1 className=" text-3xl font-bold text-center text-[#5a8d7e]">Welcome to the Digital Library</h1>
         <p className="text-center text-[#8a8f96] font-medium">Explore books from fantasy to history and discover stories that inspire, entertain, and spark your imagination.</p>
@@ -52,15 +49,21 @@ export default function Home() {
 
         {/* //show fome random books */}
         {
-          books.length > 0 ? <div className="flex flex-col gap-4">
+          books.length > 0 ? <div className="grid md:grid-cols-2  gap-4">
             {
               randomBooks.map(book => (
                 <BookCard key={book.id} book={book} />
               ))
             }
           </div>
-            :
-            <div className="w-full h-[140px] rounded-2xl shadow-xl animate-color-change"></div>
+            : <div className="grid md:grid-cols-2 gap-4">
+              {
+                [...Array(4)].map((_, i) => (
+                  <div className="w-full h-[140px] rounded-2xl shadow-xl animate-color-change"></div>
+                ))
+              }
+            </div>
+
         }
 
       </div>
@@ -69,8 +72,8 @@ export default function Home() {
       <style>
         {`
           @keyframes color-change {
-            0%, 100% { background-color: #a9aaac; }
-            50% { background-color: #d1d5db; } /* gray-300 */
+            0%, 100% { background-color: #d9d9da; }
+            50% { background-color: #c2c4c8; } /* gray-300 */
           }
           .animate-color-change {
             animation: color-change 1.5s infinite ease-in-out;
