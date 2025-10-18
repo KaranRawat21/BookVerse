@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks } from "../redux/Slice/booksSlice";
 import BookCard from "./BookCard";
+import Categories from "./Categories";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -9,10 +10,6 @@ export default function Home() {
   const loading = useSelector(state => state.books.loading);
   const error = useSelector(state => state.books.error);
 
-
-  useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch])
 
   const randomBooks = useMemo(() => {
     if (books.length === 0) return [];
@@ -51,29 +48,35 @@ export default function Home() {
 
       {/* //category container */}
       <div className="flex flex-col gap-5  ">
-        <div className=" lg:hidden flex flex-col gap-2">
-          <p className=" text-gray-500 font-medium text-sm">Books Categories</p>
-          {/* //only for small and medium screens */}
-          <div className="flex flex-wrap gap-2 [&>button]:px-4 [&>button]:py-2 [&>button]:bg-blue-500 [&>button]:text-white [&>button]:rounded-xl [&>button]:hover:bg-blue-600 [&>button]:transition">
-            <button>Fantasy</button>
-            <button>Fiction</button>
-            <button>Science Fiction</button>
-            <button>Biography</button>
-            <button>History</button>
-            <button>Cook Books</button>
-            <button>Children Books</button>
-          </div>
-        </div>
+        <Categories />
 
         {/* //show fome random books */}
-        <div className="flex flex-col gap-4">
-          {
-            randomBooks.map(book => (
-              <BookCard key={book.id} book={book} />
-            ))
-          }
-        </div>
+        {
+          books.length > 0 ? <div className="flex flex-col gap-4">
+            {
+              randomBooks.map(book => (
+                <BookCard key={book.id} book={book} />
+              ))
+            }
+          </div>
+            :
+            <div className="w-full h-[140px] rounded-2xl shadow-xl animate-color-change"></div>
+        }
+
       </div>
+
+      {/* inline animation for color changing */}
+      <style>
+        {`
+          @keyframes color-change {
+            0%, 100% { background-color: #a9aaac; }
+            50% { background-color: #d1d5db; } /* gray-300 */
+          }
+          .animate-color-change {
+            animation: color-change 1.5s infinite ease-in-out;
+          }
+        `}
+      </style>
     </div>
   )
 }

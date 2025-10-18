@@ -1,7 +1,7 @@
 
 export default function BookCard({ book }) {
   return (
-    <div className="flex md:flex-col gap-4 bg-white  rounded-2xl p-3 shadow-xl cursor-p">
+    <div className="flex  gap-4 bg-white  rounded-2xl p-3 shadow-xl cursor-pointer transition-all duration-300 ease-in-out hover:scale-102">
 
       {/* book cover image */}
       <div className=" w-[100px] h-[130px]">
