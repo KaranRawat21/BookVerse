@@ -45,7 +45,7 @@ export default function Home() {
 
       {/* //category container */}
       <div className="flex flex-col gap-5  ">
-        <Categories />
+
 
         {/* //show fome random books */}
         {

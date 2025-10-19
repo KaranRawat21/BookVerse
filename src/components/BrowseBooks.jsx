@@ -5,13 +5,16 @@ import Categories from "./Categories";
 
 export default function BrowseBooks() {
   const books = useSelector((state) => state.books.list);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("all");
+
 
   // filter books based on search
   const filteredBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase()) || book.author.toLowerCase().includes(searchTerm)
+    book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    book.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
 
 
 
@@ -19,7 +22,7 @@ export default function BrowseBooks() {
     <div className="bg-[#e9eef3] px-3 flex flex-col gap-6 items-center p-6 min-h-screen">
       {/* Category Section */}
       <div className="w-full">
-        <Categories setSelectedCategory={selectedCategory} />
+        <Categories setSearchTerm={setSearchTerm} />
       </div>
 
       {/* Search Bar */}
@@ -37,7 +40,7 @@ export default function BrowseBooks() {
       {
         books.length > 0 ? <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 w-full max-w-6xl">
           {filteredBooks.length > 0 ? (
-            filteredBooks.map((book) => (
+            (searchTerm === "all" ? books : filteredBooks).map((book) => (
               <BookCard key={book.id} book={book} />
             ))
           ) : (

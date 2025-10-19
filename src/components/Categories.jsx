@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 
-export default function Categories({ setSelectedCategory }) {
+export default function Categories({ setSearchTerm }) {
   const [active, setActive] = useState("All");
 
   const categories = [
-    "All",
-    "Fantasy",
-    "Fiction",
-    "Science Fiction",
-    "Biography",
-    "History",
-    "Cook Books",
-    "Children Books",
+    "all",
+    "fantasy",
+    "fiction",
+    "science fiction",
+    "biography",
+    "history",
+    "cookbooks",
+    "children books",
   ];
 
   const handleClick = (category) => {
     setActive(category);
-    setSelectedCategory(category);
+    setSearchTerm(category);
   };
 
   return (
