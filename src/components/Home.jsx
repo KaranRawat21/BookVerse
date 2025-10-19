@@ -45,7 +45,18 @@ export default function Home() {
 
       {/* //category container */}
       <div className="flex flex-col gap-5  ">
-
+        <div className=" flex gap-3 flex-col md:flex-row items-center ">
+          <p>List of Categories:</p>
+          <div className=" flex flex-wrap gap-3 text-sm text-gray-400 [&>p]:border-b-1 ">
+            <p>Fantasy</p>
+            <p>Fiction</p>
+            <p>Science fiction</p>
+            <p>biography</p>
+            <p>history</p>
+            <p>cookbooks</p>
+            <p>Children Books</p>
+          </div>
+        </div>
 
         {/* //show fome random books */}
         {
