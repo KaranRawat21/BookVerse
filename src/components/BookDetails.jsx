@@ -6,21 +6,23 @@ export default function BookDetails() {
 
   const books = useSelector(state => state.books.list);
   const { id } = useParams();
+  console.log(typeof (id))
 
-  const seletedBook = books.find(book => book?.id === id);
-  console.log(seletedBook)
+
+  const seletedBook = books.find(book => String(book?.id) === String(id));
+
 
   return (
     <div className="bg-[#e9eef3] min-h-screen px-3 py-5 flex flex-col gap-6">
       <Link
         to="/browsebooks"
-        className=" w-fit bg-[#53a28a] p-2 hidden md:flex rounded-xl text-white "
+        className=" w-fit bg-[#53a28a] p-2 flex rounded-xl text-white "
       >Go Back</Link>
 
       <div className="max-w-6xl flex flex-col md:flex-row items-center gap-10">
 
         <div className="w-full flex justify-center">
-          <img src={seletedBook?.image} className="  w-full max-w-[200px] rounded-2xl " />
+          <img src={seletedBook?.image || "https://placehold.co/150x200?text=No+Image"} className="  w-full max-w-[200px] rounded-2xl " />
         </div>
 
         <div className="w-full flex flex-col gap-2">

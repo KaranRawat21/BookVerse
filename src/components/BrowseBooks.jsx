@@ -6,17 +6,20 @@ import Categories from "./Categories";
 export default function BrowseBooks() {
   const books = useSelector((state) => state.books.list);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   // filter books based on search
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase()) || book.author.toLowerCase().includes(searchTerm)
   );
 
+
+
   return (
     <div className="bg-[#e9eef3] px-3 flex flex-col gap-6 items-center p-6 min-h-screen">
       {/* Category Section */}
       <div className="w-full">
-        <Categories />
+        <Categories setSelectedCategory={selectedCategory} />
       </div>
 
       {/* Search Bar */}

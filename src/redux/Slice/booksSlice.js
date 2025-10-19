@@ -62,7 +62,11 @@ const booksSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addBook: ((state, action) => {
+      state.list.unshift(action.payload);
+    })
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchBooks.pending, state => {
@@ -79,5 +83,5 @@ const booksSlice = createSlice({
       });
   }
 });
-
+export const { addBook } = booksSlice.actions;
 export default booksSlice.reducer;
